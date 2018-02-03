@@ -1,0 +1,7 @@
+X0 := hutsa;
+while nonem?(X1) loop
+    if car_b?(X1) then
+        X0 := cons_c(X0);
+    end if;
+    X1 := cdr(X1);
+end loop;
