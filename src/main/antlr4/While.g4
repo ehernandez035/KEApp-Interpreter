@@ -1,5 +1,5 @@
 grammar While;		
-prog:	stmts+=statement* ;
+prog:	stmts+=statement*  EOF ;
 statement: 'if' bald=CAR_X '?' '(' ald=ALDAGAIA ')' 'then' stmts+=statement+ 'end if' ';'      # if
          | 'while' 'nonem?' '(' ald=ALDAGAIA ')' 'loop' stmts+=statement+ 'end loop' ';'  # while
          | ald=ALDAGAIA ':=' ad=adierazpena ';' # esleipen

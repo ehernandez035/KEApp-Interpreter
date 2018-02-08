@@ -1,0 +1,51 @@
+//1.adibidea
+
+def main begin
+    X0:=hutsa;
+    X2:=cdr(X2);
+    X3:="ab";
+    if car_a?(X1) then
+        X4:="a";
+    else
+        X4:=cons_b(X3);
+    end if;
+    if X2>X4 then
+        X3:=gehituAletrak(X4);
+    end if;
+end def;
+
+def gehituAletrak begin
+    X0:=cons_a(X0);
+end def;
+
+def proba begin
+    while nonem?(X1) loop
+        X0:=gehituAletrak(X2);
+        X1:=cdr(X1);
+    end loop;
+    if car_a?(X3) then
+        X2:=proba();
+    end if;
+end def;
+
+//2.adibidea
+def reverse begin
+    while nonem?(X1) loop
+        if car_a?(X1) then
+            X0:=cons_a(X0);
+        else
+            X0:=cons_b(X0);
+        end if;
+        X1:=cdr(X1);
+    end loop;
+end def;
+
+def main begin
+    X0 := "hola";
+    if car_h?(X0) then
+        X0 := "abbb";
+    else
+        X0 := "aaabb";
+    end if;
+    X0 := reverse(X0);
+end def;

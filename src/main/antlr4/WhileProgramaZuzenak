@@ -1,0 +1,20 @@
+//1.adibidea
+
+X0:= hutsa;
+X1:= cons_a(X0);
+X2:= cons_b(X1);
+while nonem?(X2) loop
+    if car_b?(X4) then
+        X3:=cdr(X3);
+    end if;
+    X2:=cdr(X2);
+end loop;
+
+//2.adibidea
+
+while nonem?(X1) loop
+    X2:=cdr(X2);
+    X3:=cons_b(X3);
+end loop;
+X4:=hutsa;
+

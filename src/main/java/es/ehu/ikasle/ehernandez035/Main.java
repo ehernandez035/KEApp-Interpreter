@@ -2,7 +2,8 @@ package es.ehu.ikasle.ehernandez035;
 
 import es.ehu.ikasle.ehernandez035.gramatika.WhileLexer;
 import es.ehu.ikasle.ehernandez035.gramatika.WhileParser;
-import es.ehu.ikasle.ehernandez035.programa.Programa;
+import es.ehu.ikasle.ehernandez035.whileprograma.MyWhileVisitor;
+import es.ehu.ikasle.ehernandez035.whileprograma.Programa;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;

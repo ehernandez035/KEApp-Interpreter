@@ -1,8 +1,7 @@
-package es.ehu.ikasle.ehernandez035;
+package es.ehu.ikasle.ehernandez035.whileprograma;
 
 import es.ehu.ikasle.ehernandez035.gramatika.WhileBaseVisitor;
 import es.ehu.ikasle.ehernandez035.gramatika.WhileParser;
-import es.ehu.ikasle.ehernandez035.programa.*;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,0 +1,24 @@
+//1.adibidea
+
+if X0=X1 then
+	if cons_a(X0) then
+		X1:=X2;
+	else
+		X1:="abc";
+		alderantzizkoa(X1);
+	end if;
+end if;
+while X2>balioa loop
+	bkopuruakontatu(X5);
+end loop;
+
+//2.adibidea
+
+if car_a(X1) then
+	X1:= hutsa;
+end if;
+
+//3.adibidea
+if car_a?(X1) then
+	X1:= hutsa;
+

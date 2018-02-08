@@ -1,4 +1,4 @@
-package es.ehu.ikasle.ehernandez035.programa;
+package es.ehu.ikasle.ehernandez035.whileprograma;
 
 import java.util.List;
 

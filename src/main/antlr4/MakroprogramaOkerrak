@@ -1,0 +1,19 @@
+//1.adibidea
+
+def main begin
+
+end def;
+X3:=hutsa;
+X4:="aieo";
+
+//2.adibidea
+
+def main begin
+    X4:="aaa";
+end def;
+
+def proba begin
+    main(X4);
+    X4:="aieo";
+end def;
+

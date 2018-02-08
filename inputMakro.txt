@@ -1,0 +1,19 @@
+def reverse begin
+    while nonem?(X1) loop
+        if car_a?(X1) then
+            X0:=cons_a(X0);
+        else
+            X0:=cons_b(X0);
+        end if;
+        X1:=cdr(X1);
+    end loop;
+end def;
+
+def main begin
+    X0 := "ola";
+    if car_h?(X0) then
+        X0 := deskod_2_1(kod("a", "ab"));
+    else
+        X0 := deskod_3_2(kod("a", "ab", "b"));
+    end if;
+end def;

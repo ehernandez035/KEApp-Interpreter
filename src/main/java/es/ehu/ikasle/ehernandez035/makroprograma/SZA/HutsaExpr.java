@@ -1,6 +1,4 @@
-package es.ehu.ikasle.ehernandez035.programa;
-
-import java.util.List;
+package es.ehu.ikasle.ehernandez035.makroprograma.SZA;
 
 public class HutsaExpr extends Adierazpena {
 
@@ -11,7 +9,7 @@ public class HutsaExpr extends Adierazpena {
     public static final HutsaExpr INSTANCE = new HutsaExpr();
 
     @Override
-    public String getValue(List<String> aldagaiak) {
+    public String getValue(SinboloTaula st) {
         return "";
     }
 }
