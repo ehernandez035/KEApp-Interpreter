@@ -2,6 +2,8 @@ package es.ehu.ikasle.ehernandez035.makroprograma.SZA;
 
 import es.ehu.ikasle.ehernandez035.makroprograma.Utils;
 
+import java.util.List;
+
 public class AlderaketakExpr extends Adierazpena {
 
 
@@ -45,5 +47,15 @@ public class AlderaketakExpr extends Adierazpena {
 
     public enum Alderaketa {
         EQ, LE, GE, GT, LT, NE, AND, OR
+    }
+
+    @Override
+    public boolean verify(SinboloTaula st, List<String> erroreak){
+        return ad1.verify(st, erroreak) && ad2.verify(st, erroreak);
+    }
+
+    @Override
+    public boolean verifyAlf(SinboloTaula st, List<String> erroreak){
+        return ad1.verifyAlf(st, erroreak) && ad2.verifyAlf(st, erroreak);
     }
 }

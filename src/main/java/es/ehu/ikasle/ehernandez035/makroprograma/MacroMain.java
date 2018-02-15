@@ -32,6 +32,7 @@ public class MacroMain {
 //        alfabetoa.add('d');
         SinboloTaula st = new SinboloTaula(alfabetoa);
         Liburutegia.gehituFuntzioak(st);
+
         String result = programa.execute(st);
         System.out.println(result);
     }

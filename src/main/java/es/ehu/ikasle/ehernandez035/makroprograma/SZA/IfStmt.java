@@ -25,5 +25,29 @@ public class IfStmt extends Statement {
         }
     }
 
+    @Override
+    public boolean verify(SinboloTaula st, List<String> erroreak) {
+        if (!baldintza.verifyAlf(st, erroreak)) return false;
+        for (Statement s : trueStmts) {
+            if (!s.verifyAlf(st, erroreak)) return false;
+        }
+        for (Statement s : falseStmts) {
+            if (!s.verifyAlf(st, erroreak)) return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
+        if (!baldintza.verifyAlf(st, erroreak)) return false;
+        for (Statement s : trueStmts) {
+            if (!s.verifyAlf(st, erroreak)) return false;
+        }
+        for (Statement s : falseStmts) {
+            if (!s.verifyAlf(st, erroreak)) return false;
+        }
+        return true;
+    }
+
 
 }

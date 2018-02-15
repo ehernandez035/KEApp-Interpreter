@@ -13,7 +13,7 @@ public class Funtzioa implements IFuntzioa {
 
     @Override
     public String execute(SinboloTaula st) {
-        for(Statement s: statements) {
+        for (Statement s : statements) {
             s.execute(st);
         }
         return st.lortuBalioa("X0");
@@ -26,5 +26,19 @@ public class Funtzioa implements IFuntzioa {
 
     public List<Statement> getStatements() {
         return statements;
+    }
+
+    public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
+        for (Statement s : statements) {
+            if (!s.verifyAlf(st, erroreak)) return false;
+        }
+        return true;
+    }
+
+    public boolean verify(SinboloTaula st, List<String> erroreak) {
+        for (Statement s : statements) {
+            if (!s.verify(st, erroreak)) return false;
+        }
+        return true;
     }
 }

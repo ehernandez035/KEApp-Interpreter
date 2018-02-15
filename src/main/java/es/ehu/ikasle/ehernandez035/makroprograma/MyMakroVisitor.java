@@ -130,7 +130,9 @@ public class MyMakroVisitor extends MakroprogramaBaseVisitor<Object> {
     @Override
     public Object visitCons(MakroprogramaParser.ConsContext ctx) {
         Adierazpena adierazpena = (Adierazpena) this.visit(ctx.ad);
-        return new ConsExpr(adierazpena, irakurriLetra(ctx.cons.getText()));
+        // TODO Gorde posizioak
+        // Posizioa p = lortuTokenetik(ctx.cons)
+        return new ConsExpr(/*p, */adierazpena, irakurriLetra(ctx.cons.getText()));
     }
 
     @Override

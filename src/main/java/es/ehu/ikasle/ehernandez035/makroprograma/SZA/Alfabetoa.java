@@ -7,4 +7,6 @@ public class Alfabetoa {
     public static int LetraValue(char letra, List<Character> alfabetoa) {
         return alfabetoa.indexOf(letra)+1;
     }
+
+
 }

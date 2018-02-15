@@ -1,5 +1,7 @@
 package es.ehu.ikasle.ehernandez035.makroprograma.SZA;
 
+import java.util.List;
+
 public class CarExpr extends Adierazpena {
     Adierazpena adierazpena;
     char letra;
@@ -16,5 +18,17 @@ public class CarExpr extends Adierazpena {
         } else {
             return "";
         }
+    }
+
+    @Override
+    public boolean verify(SinboloTaula st, List<String> erroreak) {
+        return adierazpena.verify(st, erroreak);
+    }
+
+
+    @Override
+    public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
+        if (st.getAlfabetoa().contains(letra)) return false;
+        return adierazpena.verifyAlf(st, erroreak);
     }
 }
