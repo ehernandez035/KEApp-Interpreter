@@ -3,7 +3,7 @@ package es.ehu.ikasle.ehernandez035.makroprograma.SZA;
 import java.util.List;
 
 public class HitzaExpr extends Adierazpena {
-    String hitza;
+    private String hitza;
 
     public HitzaExpr(Posizioa p, String hitza) {
         super(p);

@@ -7,9 +7,9 @@ import java.util.List;
 public class AlderaketakExpr extends Adierazpena {
 
 
-    Adierazpena ad1;
-    Adierazpena ad2;
-    Alderaketa eragiketa;
+    private Adierazpena ad1;
+    private Adierazpena ad2;
+    private Alderaketa eragiketa;
 
     public AlderaketakExpr(Posizioa p, Adierazpena ad1, Adierazpena ad2, Alderaketa eragiketa) {
         super(p);

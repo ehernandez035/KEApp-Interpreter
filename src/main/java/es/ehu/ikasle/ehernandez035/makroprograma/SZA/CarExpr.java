@@ -3,8 +3,8 @@ package es.ehu.ikasle.ehernandez035.makroprograma.SZA;
 import java.util.List;
 
 public class CarExpr extends Adierazpena {
-    Adierazpena adierazpena;
-    char letra;
+    private Adierazpena adierazpena;
+    private char letra;
 
     public CarExpr(Posizioa p, char letra, Adierazpena adierazpena) {
         super(p);

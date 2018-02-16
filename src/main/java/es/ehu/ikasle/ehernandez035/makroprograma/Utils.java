@@ -11,7 +11,7 @@ public class Utils {
         int berrekizuna = alfabetoa.size();
         int zenb = 0;
         for (int i = 0; i < hitza.length(); i++) {
-            zenb += LetraValue(hitza.charAt(i), alfabetoa) * pow(berrekizuna, hitza.length()-i-1);
+            zenb += LetraValue(hitza.charAt(i), alfabetoa) * pow(berrekizuna, hitza.length() - i - 1);
         }
         return zenb;
     }
@@ -19,7 +19,7 @@ public class Utils {
     public static String zenbakiaHitzera(List<Character> alfabetoa, int zenbakia) {
         if (zenbakia == 0) return "";
         int zatidura = zenbakia;
-        String emaitza = "";
+        StringBuilder emaitza = new StringBuilder();
         while (zatidura > alfabetoa.size()) {
             int hondarra = zatidura % alfabetoa.size();
             zatidura = zatidura / alfabetoa.size();
@@ -27,9 +27,9 @@ public class Utils {
                 hondarra = alfabetoa.size();
                 zatidura--;
             }
-            emaitza = alfabetoa.get(hondarra - 1) + emaitza;
+            emaitza.append(alfabetoa.get(hondarra - 1));
         }
-        return alfabetoa.get(zatidura - 1) + emaitza;
+        return alfabetoa.get(zatidura - 1) + emaitza.reverse().toString();
     }
 
     public static String kod_2(List<Character> alfabetoa, String x1, String x2) {
@@ -49,7 +49,7 @@ public class Utils {
 
     public static String[] dekod_2(List<Character> alfabetoa, String hitza) {
         int z = Utils.hitzakZenbakira(alfabetoa, hitza);
-        int w = (int) Math.floor((Math.sqrt(8 * z + 1)-1) / 2);
+        int w = (int) Math.floor((Math.sqrt(8 * z + 1) - 1) / 2);
         int t = (w * w + w) / 2;
         int y = z - t;
         int x = w - y;

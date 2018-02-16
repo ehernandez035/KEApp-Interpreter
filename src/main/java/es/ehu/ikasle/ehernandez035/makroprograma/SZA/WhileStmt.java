@@ -3,8 +3,8 @@ package es.ehu.ikasle.ehernandez035.makroprograma.SZA;
 import java.util.List;
 
 public class WhileStmt extends Statement {
-    List<Statement> statements;
-    Adierazpena baldintza;
+    private List<Statement> statements;
+    private Adierazpena baldintza;
 
     public WhileStmt(Posizioa p, List<Statement> statements, Adierazpena baldintza) {
         super(p);

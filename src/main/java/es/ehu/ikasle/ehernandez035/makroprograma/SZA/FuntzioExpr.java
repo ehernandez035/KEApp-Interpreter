@@ -3,8 +3,8 @@ package es.ehu.ikasle.ehernandez035.makroprograma.SZA;
 import java.util.List;
 
 public class FuntzioExpr extends Adierazpena {
-    String funtzioIzena;
-    List<Adierazpena> parametroak;
+    private String funtzioIzena;
+    private List<Adierazpena> parametroak;
 
     public FuntzioExpr(Posizioa p, String funtzioIzena, List<Adierazpena> parametroak) {
         super(p);

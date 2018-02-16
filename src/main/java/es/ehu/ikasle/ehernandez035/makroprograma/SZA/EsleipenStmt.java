@@ -3,8 +3,8 @@ package es.ehu.ikasle.ehernandez035.makroprograma.SZA;
 import java.util.List;
 
 public class EsleipenStmt extends Statement {
-    String izena;
-    Adierazpena adierazpena;
+    private String izena;
+    private Adierazpena adierazpena;
 
     public EsleipenStmt(Posizioa p, String izena, Adierazpena adierazpena) {
         super(p);

@@ -5,9 +5,9 @@ import es.ehu.ikasle.ehernandez035.makroprograma.Utils;
 import java.util.List;
 
 public class DeskodExpr extends Adierazpena {
-    int tamaina;
-    int indize;
-    Adierazpena adierazpena;
+    private int tamaina;
+    private int indize;
+    private Adierazpena adierazpena;
 
     public DeskodExpr(Posizioa p, int tamaina, int indize, Adierazpena adierazpena) {
         super(p);
