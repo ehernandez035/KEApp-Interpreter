@@ -6,7 +6,8 @@ public class FuntzioExpr extends Adierazpena {
     String funtzioIzena;
     List<Adierazpena> parametroak;
 
-    public FuntzioExpr(String funtzioIzena, List<Adierazpena> parametroak) {
+    public FuntzioExpr(Posizioa p, String funtzioIzena, List<Adierazpena> parametroak) {
+        super(p);
         this.funtzioIzena = funtzioIzena;
         this.parametroak = parametroak;
     }
@@ -23,19 +24,26 @@ public class FuntzioExpr extends Adierazpena {
 
     @Override
     public boolean verify(SinboloTaula st, List<String> erroreak) {
-        if (st.lortuFuntzioa(funtzioIzena) == null) return false;
-        for (Adierazpena ad : parametroak) {
-            if (!ad.verify(st, erroreak)) return false;
+        boolean zuzena = true;
+        if (st.lortuFuntzioa(funtzioIzena) == null) {
+            erroreak.add(funtzioIzena + "funtzioa ez da existitzen");
+            zuzena = false;
         }
-        return true;
+        for (Adierazpena ad : parametroak) {
+            if (!ad.verify(st, erroreak)) {
+                zuzena = false;
+            }
+        }
+        return zuzena;
     }
 
     @Override
     public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
+        boolean zuzena = true;
         for (Adierazpena ad : parametroak) {
-            if (!ad.verifyAlf(st, erroreak)) return false;
+            if (!ad.verifyAlf(st, erroreak)) zuzena = false;
         }
-        return true;
+        return zuzena;
     }
 
 }

@@ -5,7 +5,8 @@ import java.util.List;
 public class HitzaExpr extends Adierazpena {
     String hitza;
 
-    public HitzaExpr(String hitza) {
+    public HitzaExpr(Posizioa p, String hitza) {
+        super(p);
         this.hitza = hitza;
 
     }
@@ -17,9 +18,14 @@ public class HitzaExpr extends Adierazpena {
 
     @Override
     public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
+        boolean zuzena = true;
         for (char c : hitza.toCharArray()) {
-            if (!st.getAlfabetoa().contains(c)) return false;
+            if (!st.getAlfabetoa().contains(c)){
+                erroreak.add("Alfabeto barneko karaktereak erabili (" + c + ")");
+                zuzena=false;
+                break;
+            }
         }
-        return true;
+        return zuzena;
     }
 }

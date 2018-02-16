@@ -6,7 +6,8 @@ public class ConsExpr extends Adierazpena {
     private Adierazpena adierazpena;
     private char letra;
 
-    public ConsExpr(Adierazpena adierazpena, char letra) {
+    public ConsExpr(Posizioa p, Adierazpena adierazpena, char letra) {
+        super(p);
         this.adierazpena = adierazpena;
         this.letra = letra;
     }
@@ -18,12 +19,19 @@ public class ConsExpr extends Adierazpena {
 
     @Override
     public boolean verify(SinboloTaula st, List<String> erroreak) {
-        return adierazpena.verify(st, erroreak);
+        return (adierazpena.verify(st, erroreak));
     }
 
     @Override
     public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
-        if (st.getAlfabetoa().contains(letra)) return false;
-        return adierazpena.verifyAlf(st, erroreak);
+        boolean zuzena = true;
+        if (!st.getAlfabetoa().contains(letra)) {
+            erroreak.add("Alfabeto barneko karaktereak erabili (" + letra + ")");
+            zuzena = false;
+        }
+           if(! adierazpena.verifyAlf(st, erroreak)){
+            zuzena=false;
+           }
+        return zuzena;
     }
 }

@@ -6,7 +6,8 @@ public class EsleipenStmt extends Statement {
     String izena;
     Adierazpena adierazpena;
 
-    public EsleipenStmt(String izena, Adierazpena adierazpena) {
+    public EsleipenStmt(Posizioa p, String izena, Adierazpena adierazpena) {
+        super(p);
         this.izena = izena;
         this.adierazpena = adierazpena;
     }
@@ -18,10 +19,7 @@ public class EsleipenStmt extends Statement {
 
     @Override
     public boolean verify(SinboloTaula st, List<String> erroreak) {
-        if (st.lortuBalioa(izena) != null) {
-            return false;
-        }
-        return (!adierazpena.verify(st, erroreak));
+        return (adierazpena.verify(st, erroreak));
     }
 
 

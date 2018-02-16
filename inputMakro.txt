@@ -10,10 +10,10 @@ def reverse begin
 end def;
 
 def main begin
-    X0 := "ola";
-    if car_h?(X0) then
+    X0 := "aaba";
+    if car_b?(X0) then
         X0 := deskod_2_1(kod("a", "ab"));
     else
-        X0 := deskod_3_2(kod("a", "ab", "b"));
+        X0 := deskod_3_3(kod("a", "ab", "b"));
     end if;
 end def;

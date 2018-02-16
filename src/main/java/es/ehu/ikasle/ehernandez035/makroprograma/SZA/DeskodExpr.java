@@ -9,7 +9,8 @@ public class DeskodExpr extends Adierazpena {
     int indize;
     Adierazpena adierazpena;
 
-    public DeskodExpr(int tamaina, int indize, Adierazpena adierazpena) {
+    public DeskodExpr(Posizioa p, int tamaina, int indize, Adierazpena adierazpena) {
+        super(p);
         this.tamaina = tamaina;
         this.indize = indize;
         this.adierazpena = adierazpena;
@@ -22,11 +23,19 @@ public class DeskodExpr extends Adierazpena {
 
     @Override
     public boolean verify(SinboloTaula st, List<String> erroreak) {
-        return indize <= tamaina && adierazpena.verify(st, erroreak);
+        boolean zuzena = true;
+        if(indize > tamaina){
+            erroreak.add("Deskod_" + tamaina + "_" + indize + ": " + indize + " <= " + tamaina + " izan behar du");
+            zuzena=false;
+        }
+        if(adierazpena.verify(st, erroreak)){
+            zuzena=false;
+        }
+        return zuzena;
     }
 
     @Override
     public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
-        return adierazpena.verifyAlf(st, erroreak);
+        return (adierazpena.verifyAlf(st, erroreak));
     }
 }

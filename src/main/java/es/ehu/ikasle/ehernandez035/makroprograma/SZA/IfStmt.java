@@ -7,7 +7,8 @@ public class IfStmt extends Statement {
     private List<Statement> trueStmts;
     private List<Statement> falseStmts;
 
-    public IfStmt(Adierazpena baldintza, List<Statement> trueStmts, List<Statement> falseStmts) {
+    public IfStmt(Posizioa p, Adierazpena baldintza, List<Statement> trueStmts, List<Statement> falseStmts) {
+        super(p);
         this.baldintza = baldintza;
         this.trueStmts = trueStmts;
         this.falseStmts = falseStmts;
@@ -27,26 +28,28 @@ public class IfStmt extends Statement {
 
     @Override
     public boolean verify(SinboloTaula st, List<String> erroreak) {
-        if (!baldintza.verifyAlf(st, erroreak)) return false;
+        boolean zuzena = true;
+        if (!baldintza.verify(st, erroreak)) zuzena = false;
         for (Statement s : trueStmts) {
-            if (!s.verifyAlf(st, erroreak)) return false;
+            if (!s.verify(st, erroreak)) zuzena = false;
         }
         for (Statement s : falseStmts) {
-            if (!s.verifyAlf(st, erroreak)) return false;
+            if (!s.verify(st, erroreak)) zuzena = false;
         }
-        return true;
+        return zuzena;
     }
 
     @Override
     public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
-        if (!baldintza.verifyAlf(st, erroreak)) return false;
+        boolean zuzena = true;
+        if (!baldintza.verifyAlf(st, erroreak)) zuzena = false;
         for (Statement s : trueStmts) {
-            if (!s.verifyAlf(st, erroreak)) return false;
+            if (!s.verifyAlf(st, erroreak)) zuzena = false;
         }
         for (Statement s : falseStmts) {
-            if (!s.verifyAlf(st, erroreak)) return false;
+            if (!s.verifyAlf(st, erroreak)) zuzena = false;
         }
-        return true;
+        return zuzena;
     }
 
 

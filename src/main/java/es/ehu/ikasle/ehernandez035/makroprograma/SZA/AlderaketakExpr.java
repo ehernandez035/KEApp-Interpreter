@@ -11,7 +11,8 @@ public class AlderaketakExpr extends Adierazpena {
     Adierazpena ad2;
     Alderaketa eragiketa;
 
-    public AlderaketakExpr(Adierazpena ad1, Adierazpena ad2, Alderaketa eragiketa) {
+    public AlderaketakExpr(Posizioa p, Adierazpena ad1, Adierazpena ad2, Alderaketa eragiketa) {
+        super(p);
         this.ad1 = ad1;
         this.ad2 = ad2;
         this.eragiketa = eragiketa;
@@ -51,11 +52,14 @@ public class AlderaketakExpr extends Adierazpena {
 
     @Override
     public boolean verify(SinboloTaula st, List<String> erroreak){
-        return ad1.verify(st, erroreak) && ad2.verify(st, erroreak);
+        return (ad1.verify(st, erroreak) && ad2.verify(st, erroreak));
     }
 
     @Override
     public boolean verifyAlf(SinboloTaula st, List<String> erroreak){
-        return ad1.verifyAlf(st, erroreak) && ad2.verifyAlf(st, erroreak);
+        return (ad1.verifyAlf(st, erroreak) && ad2.verifyAlf(st, erroreak));
     }
+
+
+
 }

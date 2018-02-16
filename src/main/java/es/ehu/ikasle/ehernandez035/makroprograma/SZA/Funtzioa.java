@@ -5,8 +5,10 @@ import java.util.List;
 public class Funtzioa implements IFuntzioa {
     private String izena;
     private List<Statement> statements;
+    private Posizioa p;
 
-    public Funtzioa(List<Statement> statements, String izena) {
+    public Funtzioa(Posizioa p, List<Statement> statements, String izena) {
+        this.p = p;
         this.izena = izena;
         this.statements = statements;
     }
@@ -29,16 +31,18 @@ public class Funtzioa implements IFuntzioa {
     }
 
     public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
+        boolean zuzena = true;
         for (Statement s : statements) {
-            if (!s.verifyAlf(st, erroreak)) return false;
+            if (!s.verifyAlf(st, erroreak)) zuzena = false;
         }
-        return true;
+        return zuzena;
     }
 
     public boolean verify(SinboloTaula st, List<String> erroreak) {
+        boolean zuzena = true;
         for (Statement s : statements) {
-            if (!s.verify(st, erroreak)) return false;
+            if (!s.verify(st, erroreak)) zuzena = false;
         }
-        return true;
+        return zuzena;
     }
 }

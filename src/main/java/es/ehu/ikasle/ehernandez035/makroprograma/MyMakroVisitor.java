@@ -3,6 +3,8 @@ package es.ehu.ikasle.ehernandez035.makroprograma;
 import es.ehu.ikasle.ehernandez035.gramatika.makro.MakroprogramaBaseVisitor;
 import es.ehu.ikasle.ehernandez035.gramatika.makro.MakroprogramaParser;
 import es.ehu.ikasle.ehernandez035.makroprograma.SZA.*;
+import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.Token;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,7 @@ public class MyMakroVisitor extends MakroprogramaBaseVisitor<Object> {
         for (MakroprogramaParser.FuncContext fc : ctx.funtz) {
             funtzioak.add((Funtzioa) this.visit(fc));
         }
-        return new Programa(funtzioak);
+        return new Programa(lortuContext(ctx), funtzioak);
     }
 
     @Override
@@ -25,7 +27,7 @@ public class MyMakroVisitor extends MakroprogramaBaseVisitor<Object> {
         for (MakroprogramaParser.StatementContext sc : ctx.stmts) {
             statements.add((Statement) this.visit(sc));
         }
-        return new Funtzioa(statements, izena);
+        return new Funtzioa(lortuContext(ctx), statements, izena);
     }
 
     @Override
@@ -39,7 +41,7 @@ public class MyMakroVisitor extends MakroprogramaBaseVisitor<Object> {
         for (MakroprogramaParser.StatementContext sc : ctx.falseStmts) {
             statementsFalse.add((Statement) this.visit(sc));
         }
-        return new IfStmt(baldintza, statementsTrue, statementsFalse);
+        return new IfStmt(lortuContext(ctx), baldintza, statementsTrue, statementsFalse);
     }
 
     @Override
@@ -49,7 +51,7 @@ public class MyMakroVisitor extends MakroprogramaBaseVisitor<Object> {
         for (MakroprogramaParser.StatementContext sc : ctx.stmts) {
             statements.add((Statement) this.visit(sc));
         }
-        return new WhileStmt(statements, baldintza);
+        return new WhileStmt(lortuContext(ctx), statements, baldintza);
     }
 
 
@@ -57,18 +59,18 @@ public class MyMakroVisitor extends MakroprogramaBaseVisitor<Object> {
     public Object visitEsleipen(MakroprogramaParser.EsleipenContext ctx) {
         String izena = ctx.ald.getText();
         Adierazpena adierazpena = (Adierazpena) this.visit(ctx.ad);
-        return new EsleipenStmt(izena, adierazpena);
+        return new EsleipenStmt(lortuContext(ctx), izena, adierazpena);
     }
 
     @Override
     public Object visitHitza(MakroprogramaParser.HitzaContext ctx) {
         String guztia = ctx.hitz.getText();
-        return new HitzaExpr(guztia.substring(1, guztia.length() - 1));
+        return new HitzaExpr(lortuContext(ctx), guztia.substring(1, guztia.length() - 1));
     }
 
     @Override
     public Object visitAldagaia(MakroprogramaParser.AldagaiaContext ctx) {
-        return new AldagaiaExpr(ctx.ald.getText());
+        return new AldagaiaExpr(lortuContext(ctx), ctx.ald.getText());
     }
 
     @Override
@@ -79,7 +81,7 @@ public class MyMakroVisitor extends MakroprogramaBaseVisitor<Object> {
     @Override
     public Object visitCar(MakroprogramaParser.CarContext ctx) {
         Adierazpena adierazpena = (Adierazpena) this.visit(ctx.ad);
-        return new CarExpr(irakurriLetra(ctx.car.getText()), adierazpena);
+        return new CarExpr(lortuContext(ctx), irakurriLetra(ctx.car.getText()), adierazpena);
     }
 
     @Override
@@ -89,7 +91,7 @@ public class MyMakroVisitor extends MakroprogramaBaseVisitor<Object> {
         for (MakroprogramaParser.AdierazpenaContext ac : ctx.arg) {
             parametroLista.add((Adierazpena) this.visit(ac));
         }
-        return new FuntzioExpr(izena, parametroLista);
+        return new FuntzioExpr(lortuContext(ctx), izena, parametroLista);
     }
 
     @Override
@@ -124,30 +126,38 @@ public class MyMakroVisitor extends MakroprogramaBaseVisitor<Object> {
                 erag = AlderaketakExpr.Alderaketa.OR;
                 break;
         }
-        return new AlderaketakExpr(ad1, ad2, erag);
+        return new AlderaketakExpr(lortuContext(ctx), ad1, ad2, erag);
     }
 
     @Override
     public Object visitCons(MakroprogramaParser.ConsContext ctx) {
         Adierazpena adierazpena = (Adierazpena) this.visit(ctx.ad);
-        // TODO Gorde posizioak
-        // Posizioa p = lortuTokenetik(ctx.cons)
-        return new ConsExpr(/*p, */adierazpena, irakurriLetra(ctx.cons.getText()));
+        return new ConsExpr(lortuContext(ctx), adierazpena, irakurriLetra(ctx.cons.getText()));
     }
 
     @Override
     public Object visitNotAdierazpena(MakroprogramaParser.NotAdierazpenaContext ctx) {
-        return new NotExpr((Adierazpena) this.visit(ctx.ad));
+        return new NotExpr(lortuContext(ctx), (Adierazpena) this.visit(ctx.ad));
     }
 
     @Override
     public Object visitDeskod(MakroprogramaParser.DeskodContext ctx) {
         String deskod = ctx.deskod.getText();
         String[] split = deskod.split("_");
-        return new DeskodExpr(Integer.parseInt(split[1]), Integer.parseInt(split[2]), (Adierazpena) this.visit(ctx.ad));
+        return new DeskodExpr(lortuContext(ctx), Integer.parseInt(split[1]), Integer.parseInt(split[2]), (Adierazpena) this.visit(ctx.ad));
     }
 
     private static char irakurriLetra(String testua) {
         return testua.charAt(testua.length() - 1);
+    }
+
+    private static Posizioa lortuTokenetik(Token t){
+        return  new Posizioa(t.getLine(), t.getLine(), t.getCharPositionInLine(), t.getCharPositionInLine()+t.getText().length());
+    }
+
+    private static Posizioa lortuContext(ParserRuleContext c){
+        Posizioa has = lortuTokenetik(c.start);
+        Posizioa buk = lortuTokenetik(c.stop);
+        return new Posizioa(has.hasLerro, buk.bukLerro, has.hasZut, buk.bukZut);
     }
 }

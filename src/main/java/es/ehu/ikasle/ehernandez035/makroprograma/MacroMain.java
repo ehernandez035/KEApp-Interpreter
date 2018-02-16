@@ -26,14 +26,26 @@ public class MacroMain {
         Programa programa = (Programa) visitor.visitProg(prog);
 
         List<Character> alfabetoa = new ArrayList<>();
+        List<String> erroreak = new ArrayList<>();
+        SinboloTaula st = new SinboloTaula(alfabetoa);
+        Liburutegia.gehituFuntzioak(st);
+        programa.verify(st, erroreak);
+
         alfabetoa.add('a');
         alfabetoa.add('b');
 //        alfabetoa.add('c');
 //        alfabetoa.add('d');
-        SinboloTaula st = new SinboloTaula(alfabetoa);
-        Liburutegia.gehituFuntzioak(st);
 
-        String result = programa.execute(st);
-        System.out.println(result);
+
+        programa.verifyAlf(st, erroreak);
+
+        if (!erroreak.isEmpty()) {
+            for (String e : erroreak) {
+                System.out.println("Error: " + e);
+            }
+        } else {
+            String result = programa.execute(st);
+            System.out.println(result);
+        }
     }
 }

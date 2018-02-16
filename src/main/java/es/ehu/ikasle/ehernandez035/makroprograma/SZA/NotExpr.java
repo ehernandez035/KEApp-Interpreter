@@ -3,7 +3,8 @@ package es.ehu.ikasle.ehernandez035.makroprograma.SZA;
 public class NotExpr extends Adierazpena {
     Adierazpena adierazpena;
 
-    public NotExpr(Adierazpena adierazpena) {
+    public NotExpr(Posizioa p, Adierazpena adierazpena) {
+        super(p);
         this.adierazpena = adierazpena;
     }
 

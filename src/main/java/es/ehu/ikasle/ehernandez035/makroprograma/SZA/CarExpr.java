@@ -6,7 +6,8 @@ public class CarExpr extends Adierazpena {
     Adierazpena adierazpena;
     char letra;
 
-    public CarExpr(char letra, Adierazpena adierazpena) {
+    public CarExpr(Posizioa p, char letra, Adierazpena adierazpena) {
+        super(p);
         this.adierazpena = adierazpena;
         this.letra = letra;
     }
@@ -28,7 +29,12 @@ public class CarExpr extends Adierazpena {
 
     @Override
     public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
-        if (st.getAlfabetoa().contains(letra)) return false;
-        return adierazpena.verifyAlf(st, erroreak);
+        boolean zuzena = true;
+        if (!st.getAlfabetoa().contains(letra)){
+            erroreak.add("Alfabeto barneko karaktereak erabili (" + letra + ")");
+            zuzena=false;
+        }
+        adierazpena.verifyAlf(st, erroreak);
+        return zuzena;
     }
 }
