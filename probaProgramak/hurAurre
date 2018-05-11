@@ -1,0 +1,8 @@
+def main begin
+	hitza := kateatu("a", "b");
+	if car_a?(hitza) then
+		X0:=hur(hitza);
+	else
+		X0:=aurre(hitza);
+	end if;
+end def;

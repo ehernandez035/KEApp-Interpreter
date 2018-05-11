@@ -11,8 +11,8 @@ public abstract class Statement {
 
     public abstract void execute(SinboloTaula st);
 
-    public abstract boolean verifyAlf(SinboloTaula st, List<String> erroreak);
+    public abstract boolean verifyAlf(SinboloTaula st, List<Errorea> erroreak);
 
-    public abstract boolean verify(SinboloTaula st, List<String> erroreak);
+    public abstract boolean verify(SinboloTaula st, List<Errorea> erroreak);
 
 }

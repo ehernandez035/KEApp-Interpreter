@@ -1,0 +1,9 @@
+def deskodKateatu begin
+    X2:=deskod_2_1(X1);
+    X3:=deskod_2_2(X1);
+    X0:=kateatu(X2, X3);
+end def;
+
+def main begin
+	X0:=deskodKateatu(kod("a", "bb"));
+end def;

@@ -18,13 +18,13 @@ public class EsleipenStmt extends Statement {
     }
 
     @Override
-    public boolean verify(SinboloTaula st, List<String> erroreak) {
+    public boolean verify(SinboloTaula st, List<Errorea> erroreak) {
         return (adierazpena.verify(st, erroreak));
     }
 
 
     @Override
-    public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
+    public boolean verifyAlf(SinboloTaula st, List<Errorea> erroreak) {
         return (!adierazpena.verifyAlf(st, erroreak));
     }
 }

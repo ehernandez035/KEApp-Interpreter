@@ -14,7 +14,8 @@ public class CarExpr extends Adierazpena {
 
     @Override
     public String getValue(SinboloTaula st) {
-        if (this.adierazpena.getValue(st).charAt(0) == this.letra) {
+        String value = this.adierazpena.getValue(st);
+        if (!value.isEmpty() && value.charAt(0) == this.letra) {
             return "a";
         } else {
             return "";
@@ -22,16 +23,17 @@ public class CarExpr extends Adierazpena {
     }
 
     @Override
-    public boolean verify(SinboloTaula st, List<String> erroreak) {
+    public boolean verify(SinboloTaula st, List<Errorea> erroreak) {
         return adierazpena.verify(st, erroreak);
     }
 
 
     @Override
-    public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
+    public boolean verifyAlf(SinboloTaula st, List<Errorea> erroreak) {
         boolean zuzena = true;
         if (!st.getAlfabetoa().contains(letra)){
-            erroreak.add("Alfabeto barneko karaktereak erabili (" + letra + ")");
+            Errorea e = new Errorea(p, "Alfabeto barneko karaktereak erabili (" + letra + ")");
+            erroreak.add(e);
             zuzena=false;
         }
         adierazpena.verifyAlf(st, erroreak);

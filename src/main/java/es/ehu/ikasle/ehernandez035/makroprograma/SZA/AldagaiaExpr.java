@@ -14,15 +14,4 @@ public class AldagaiaExpr extends Adierazpena {
     public String getValue(SinboloTaula st) {
         return st.lortuBalioa(aldagaia);
     }
-
-    @Override
-    public boolean verify(SinboloTaula st, List<String> erroreak){
-        boolean zuzena = true;
-        if(st.baduBalio(aldagaia)){
-
-            erroreak.add("Aldagaia aurretik existitzen da");
-            zuzena=false;
-        }
-        return zuzena;
-    }
 }

@@ -11,11 +11,11 @@ public abstract class Adierazpena {
 
     public abstract String getValue(SinboloTaula st);
 
-    public boolean verify(SinboloTaula st, List<String> erroreak) {
+    public boolean verify(SinboloTaula st, List<Errorea> erroreak) {
         return true;
     }
 
-    public boolean verifyAlf(SinboloTaula st, List<String> erroreak){
+    public boolean verifyAlf(SinboloTaula st, List<Errorea> erroreak){
         return true;
     }
 }

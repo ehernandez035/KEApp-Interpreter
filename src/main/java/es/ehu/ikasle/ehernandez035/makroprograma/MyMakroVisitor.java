@@ -34,14 +34,18 @@ public class MyMakroVisitor extends MakroprogramaBaseVisitor<Object> {
     public Object visitIf(MakroprogramaParser.IfContext ctx) {
         Adierazpena baldintza = (Adierazpena) this.visit(ctx.bald);
         List<Statement> statementsTrue = new ArrayList<>();
+        List<When> statementsElsif = new ArrayList<>();
         List<Statement> statementsFalse = new ArrayList<>();
         for (MakroprogramaParser.StatementContext sc : ctx.stmts) {
             statementsTrue.add((Statement) this.visit(sc));
         }
+        for (MakroprogramaParser.ElsifContext sc : ctx.elif) {
+            statementsElsif.add((When) this.visit(sc));
+        }
         for (MakroprogramaParser.StatementContext sc : ctx.falseStmts) {
             statementsFalse.add((Statement) this.visit(sc));
         }
-        return new IfStmt(lortuContext(ctx), baldintza, statementsTrue, statementsFalse);
+        return new IfStmt(lortuContext(ctx), baldintza, statementsTrue, statementsElsif, statementsFalse);
     }
 
     @Override
@@ -101,7 +105,7 @@ public class MyMakroVisitor extends MakroprogramaBaseVisitor<Object> {
         String eragText = ctx.erag.getText();
         AlderaketakExpr.Alderaketa erag = null;
         switch (eragText) {
-            case "==":
+            case "=":
                 erag = AlderaketakExpr.Alderaketa.EQ;
                 break;
             case "!=":
@@ -159,5 +163,65 @@ public class MyMakroVisitor extends MakroprogramaBaseVisitor<Object> {
         Posizioa has = lortuTokenetik(c.start);
         Posizioa buk = lortuTokenetik(c.stop);
         return new Posizioa(has.hasLerro, buk.bukLerro, has.hasZut, buk.bukZut);
+    }
+
+    @Override
+    public Object visitFor(MakroprogramaParser.ForContext ctx) {
+        Adierazpena has = (Adierazpena) this.visit(ctx.has);
+        Adierazpena buk = (Adierazpena) this.visit(ctx.buk);
+        String indize = ctx.ind.getText();
+        List<Statement> stmts = new ArrayList<>();
+        for (MakroprogramaParser.StatementContext stmt : ctx.stmts) {
+            stmts.add((Statement) this.visit(stmt));
+        }
+
+        return new ForStmt(lortuContext(ctx), indize, has, buk, stmts);
+    }
+
+    @Override
+    public Object visitForZenbaki(MakroprogramaParser.ForZenbakiContext ctx) {
+        int has =  Integer.parseInt(ctx.has.getText());
+        int buk =  Integer.parseInt(ctx.buk.getText());
+        String indize = ctx.ind.getText();
+        List<Statement> stmts = new ArrayList<>();
+        for (MakroprogramaParser.StatementContext stmt : ctx.stmts) {
+            stmts.add((Statement) this.visit(stmt));
+        }
+
+        return new ForZenbakiStmt(lortuContext(ctx), indize, has, buk, stmts);
+    }
+
+    @Override
+    public Object visitCaseMakroa(MakroprogramaParser.CaseMakroaContext ctx) {
+        Adierazpena adierazpena = (Adierazpena) this.visit(ctx.ad);
+        List<When> whens = new ArrayList<>();
+        for (MakroprogramaParser.WhenContext stmt : ctx.w) {
+            whens.add((When) this.visit(stmt));
+        }
+        List<Statement> otherStmts = new ArrayList<>();
+        for (MakroprogramaParser.StatementContext stmt : ctx.otherStmts) {
+            otherStmts.add((Statement) this.visit(stmt));
+        }
+        return new CaseStmt(lortuContext(ctx), adierazpena, whens, otherStmts);
+    }
+
+    @Override
+    public Object visitElsif(MakroprogramaParser.ElsifContext ctx) {
+        Adierazpena adierazpena = (Adierazpena) this.visit(ctx.bald);
+        List<Statement> stmts = new ArrayList<>();
+        for (MakroprogramaParser.StatementContext stmt : ctx.stmts) {
+            stmts.add((Statement) this.visit(stmt));
+        }
+        return new When(adierazpena, stmts);
+    }
+
+    @Override
+    public Object visitWhen(MakroprogramaParser.WhenContext ctx) {
+        Adierazpena adierazpena = (Adierazpena) this.visit(ctx.ad);
+        List<Statement> stmts = new ArrayList<>();
+        for (MakroprogramaParser.StatementContext stmt : ctx.stmts) {
+            stmts.add((Statement) this.visit(stmt));
+        }
+        return new When(adierazpena, stmts);
     }
 }

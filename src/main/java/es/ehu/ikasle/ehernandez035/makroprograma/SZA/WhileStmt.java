@@ -22,7 +22,7 @@ public class WhileStmt extends Statement {
     }
 
     @Override
-    public boolean verify(SinboloTaula st, List<String> erroreak) {
+    public boolean verify(SinboloTaula st, List<Errorea> erroreak) {
         boolean zuzena = true;
         if (!baldintza.verify(st, erroreak)){
             zuzena= false;
@@ -34,7 +34,7 @@ public class WhileStmt extends Statement {
     }
 
     @Override
-    public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
+    public boolean verifyAlf(SinboloTaula st, List<Errorea> erroreak) {
         boolean zuzena = true;
         if (!baldintza.verifyAlf(st, erroreak)) zuzena= false;
         for (Statement s : statements) {

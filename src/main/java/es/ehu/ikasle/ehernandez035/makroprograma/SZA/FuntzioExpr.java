@@ -23,10 +23,11 @@ public class FuntzioExpr extends Adierazpena {
     }
 
     @Override
-    public boolean verify(SinboloTaula st, List<String> erroreak) {
+    public boolean verify(SinboloTaula st, List<Errorea> erroreak) {
         boolean zuzena = true;
         if (st.lortuFuntzioa(funtzioIzena) == null) {
-            erroreak.add(funtzioIzena + "funtzioa ez da existitzen");
+            Errorea e = new Errorea(p, funtzioIzena + "funtzioa ez da existitzen");
+            erroreak.add(e);
             zuzena = false;
         }
         for (Adierazpena ad : parametroak) {
@@ -38,7 +39,7 @@ public class FuntzioExpr extends Adierazpena {
     }
 
     @Override
-    public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
+    public boolean verifyAlf(SinboloTaula st, List<Errorea> erroreak) {
         boolean zuzena = true;
         for (Adierazpena ad : parametroak) {
             if (!ad.verifyAlf(st, erroreak)) zuzena = false;

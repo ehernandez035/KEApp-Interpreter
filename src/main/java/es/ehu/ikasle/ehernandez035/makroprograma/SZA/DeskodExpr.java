@@ -22,10 +22,11 @@ public class DeskodExpr extends Adierazpena {
     }
 
     @Override
-    public boolean verify(SinboloTaula st, List<String> erroreak) {
+    public boolean verify(SinboloTaula st, List<Errorea> erroreak) {
         boolean zuzena = true;
         if(indize > tamaina){
-            erroreak.add("Deskod_" + tamaina + "_" + indize + ": " + indize + " <= " + tamaina + " izan behar du");
+            Errorea e = new Errorea(p, "Deskod_" + tamaina + "_" + indize + ": " + indize + " <= " + tamaina + " izan behar du");
+            erroreak.add(e);
             zuzena=false;
         }
         if(adierazpena.verify(st, erroreak)){
@@ -35,7 +36,7 @@ public class DeskodExpr extends Adierazpena {
     }
 
     @Override
-    public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
+    public boolean verifyAlf(SinboloTaula st, List<Errorea> erroreak) {
         return (adierazpena.verifyAlf(st, erroreak));
     }
 }

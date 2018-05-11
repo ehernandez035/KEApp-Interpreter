@@ -28,7 +28,8 @@ public class SinboloTaula {
     }
 
     public String lortuBalioa(String izena) {
-        return aldagaiak.getOrDefault(izena, "");
+        if (!aldagaiak.containsKey(izena)) return "";
+        else return aldagaiak.get(izena);
     }
 
     public boolean baduBalio(String izena) {

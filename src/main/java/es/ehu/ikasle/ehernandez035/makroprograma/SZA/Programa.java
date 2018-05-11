@@ -1,7 +1,9 @@
 package es.ehu.ikasle.ehernandez035.makroprograma.SZA;
 
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Programa {
     private List<Funtzioa> functions;
@@ -19,10 +21,18 @@ public class Programa {
         return st.lortuFuntzioa("main").execute(st);
     }
 
-    public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
+    public boolean verifyAlf(SinboloTaula st, List<Errorea> erroreak) {
         boolean zuzena = true;
-        if (st.getAlfabetoa().stream().distinct().count() != st.getAlfabetoa().size()) {
-            erroreak.add("Alfabetoan ezin dira karaktere errepikaturik sartu");
+        long count = 0L;
+        Set<Character> uniqueValues = new HashSet<>();
+        for (Character character : st.getAlfabetoa()) {
+            if (uniqueValues.add(character)) {
+                count++;
+            }
+        }
+        if (count != st.getAlfabetoa().size()) {
+            Errorea e = new Errorea(p, "Alfabetoan ezin dira karaktere errepikaturik sartu");
+            erroreak.add(e);
             zuzena = false;
         }
         for (int i = 0; i < st.getAlfabetoa().size() - 1; i++) {
@@ -36,17 +46,18 @@ public class Programa {
         return zuzena;
     }
 
-    public boolean verify(SinboloTaula st, List<String> erroreak) {
+    public boolean verify(SinboloTaula st, List<Errorea> erroreak) {
         boolean zuzena = true;
         for (Funtzioa f : functions) {
             if (st.lortuFuntzioa(f.getIzena()) != null) {
-                erroreak.add(f.getIzena() + "izeneko funtziorik ez da existitzen");
+                Errorea e = new Errorea(p, f.getIzena() + "izeneko funtziorik ez da existitzen");
+                erroreak.add(e);
                 zuzena = false;
             }
             st.gordeFuntzioa(f);
         }
         if (st.lortuFuntzioa("main") == null) {
-            erroreak.add("main izeneko funtzioa existitu behar da");
+            erroreak.add(new Errorea(p, "main izeneko funtzioa existitu behar da"));
             zuzena = false;
         }
         for (Funtzioa f : functions) {

@@ -13,5 +13,6 @@ adierazpena: 'hutsa'                 # hutsa
 ALDAGAIA: 'X' [0-9]+ ;
 CAR_X: 'car_' [a-zA-Z];
 CONS_X: 'cons_' [a-zA-Z];
+COMMENT: '--' [^\n\r]* -> skip;
 
 WS : [ \t\r\n]+ -> skip;

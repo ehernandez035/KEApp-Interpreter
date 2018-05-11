@@ -2,6 +2,7 @@ package es.ehu.ikasle.ehernandez035.makroprograma;
 
 import es.ehu.ikasle.ehernandez035.gramatika.makro.MakroprogramaLexer;
 import es.ehu.ikasle.ehernandez035.gramatika.makro.MakroprogramaParser;
+import es.ehu.ikasle.ehernandez035.makroprograma.SZA.Errorea;
 import es.ehu.ikasle.ehernandez035.makroprograma.SZA.Liburutegia;
 import es.ehu.ikasle.ehernandez035.makroprograma.SZA.Programa;
 import es.ehu.ikasle.ehernandez035.makroprograma.SZA.SinboloTaula;
@@ -14,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MacroMain {
+public class MakroMain {
 
     public static void main(String[] args) throws IOException {
         CharStream input = CharStreams.fromFileName(args[0]);
@@ -26,7 +27,7 @@ public class MacroMain {
         Programa programa = (Programa) visitor.visitProg(prog);
 
         List<Character> alfabetoa = new ArrayList<>();
-        List<String> erroreak = new ArrayList<>();
+        List<Errorea> erroreak = new ArrayList<>();
         SinboloTaula st = new SinboloTaula(alfabetoa);
         Liburutegia.gehituFuntzioak(st);
         programa.verify(st, erroreak);
@@ -40,12 +41,13 @@ public class MacroMain {
         programa.verifyAlf(st, erroreak);
 
         if (!erroreak.isEmpty()) {
-            for (String e : erroreak) {
-                System.out.println("Error: " + e);
+            for (Errorea e : erroreak) {
+                System.out.println("Error: " + e.mezua);
             }
         } else {
             String result = programa.execute(st);
             System.out.println(result);
         }
+
     }
 }

@@ -17,11 +17,12 @@ public class HitzaExpr extends Adierazpena {
     }
 
     @Override
-    public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
+    public boolean verifyAlf(SinboloTaula st, List<Errorea> erroreak) {
         boolean zuzena = true;
         for (char c : hitza.toCharArray()) {
             if (!st.getAlfabetoa().contains(c)){
-                erroreak.add("Alfabeto barneko karaktereak erabili (" + c + ")");
+                Errorea e = new Errorea(p, "Alfabeto barneko karaktereak erabili (" + c + ")");
+                erroreak.add(e);
                 zuzena=false;
                 break;
             }

@@ -2,7 +2,10 @@ package es.ehu.ikasle.ehernandez035.makroprograma.SZA;
 
 import es.ehu.ikasle.ehernandez035.makroprograma.Utils;
 
+import java.math.BigInteger;
 import java.util.List;
+
+import static es.ehu.ikasle.ehernandez035.makroprograma.SZA.AlderaketakExpr.Alderaketa.Biderketa;
 
 public class AlderaketakExpr extends Adierazpena {
 
@@ -21,42 +24,51 @@ public class AlderaketakExpr extends Adierazpena {
 
     @Override
     public String getValue(SinboloTaula st) {
-        int zb1 = Utils.hitzakZenbakira(st.getAlfabetoa(), ad1.getValue(st));
-        int zb2 = Utils.hitzakZenbakira(st.getAlfabetoa(), ad2.getValue(st));
+        BigInteger zb1 = Utils.hitzakZenbakira(st.getAlfabetoa(), ad1.getValue(st));
+        BigInteger zb2 = Utils.hitzakZenbakira(st.getAlfabetoa(), ad2.getValue(st));
+
+        int diffSign = zb1.subtract(zb2).signum();
 
         switch (eragiketa) {
             case EQ:
-                return zb1 == zb2 ? "a" : "";
+                return diffSign == 0 ? "a" : "";
             case LE:
-                return zb1 <= zb2 ? "a" : "";
+                return diffSign <= 0 ? "a" : "";
             case GE:
-                return zb1 >= zb2 ? "a" : "";
+                return diffSign >= 0 ? "a" : "";
             case GT:
-                return zb1 > zb2 ? "a" : "";
+                return diffSign > 0 ? "a" : "";
             case LT:
-                return zb1 < zb2 ? "a" : "";
+                return diffSign < 0 ? "a" : "";
             case NE:
-                return zb1 != zb2 ? "a" : "";
+                return diffSign != 0 ? "a" : "";
             case AND:
-                return (zb1 != 0 && zb2!= 0) ? "a" : "";
+                return (zb1.signum() != 0 && zb2.signum() != 0) ? "a" : "";
             case OR:
-                return (zb1 != 0 || zb2!= 0) ? "a" : "";
+                return (zb1.signum() != 0 || zb2.signum() != 0) ? "a" : "";
+            case Batuketa:
+                return Utils.zenbakiaHitzera(st.getAlfabetoa(),zb1.add(zb2));
+            case Kenketa:
+                return diffSign <= 0 ? "" : Utils.zenbakiaHitzera(st.getAlfabetoa(),zb1.subtract(zb2));
+            case Biderketa:
+                return Utils.zenbakiaHitzera(st.getAlfabetoa(),zb1.multiply(zb2));
+
         }
         return null;
     }
 
 
     public enum Alderaketa {
-        EQ, LE, GE, GT, LT, NE, AND, OR
+        EQ, LE, GE, GT, LT, NE, AND, OR, Batuketa, Kenketa, Biderketa
     }
 
     @Override
-    public boolean verify(SinboloTaula st, List<String> erroreak){
+    public boolean verify(SinboloTaula st, List<Errorea> erroreak){
         return (ad1.verify(st, erroreak) && ad2.verify(st, erroreak));
     }
 
     @Override
-    public boolean verifyAlf(SinboloTaula st, List<String> erroreak){
+    public boolean verifyAlf(SinboloTaula st, List<Errorea> erroreak){
         return (ad1.verifyAlf(st, erroreak) && ad2.verifyAlf(st, erroreak));
     }
 

@@ -18,15 +18,16 @@ public class ConsExpr extends Adierazpena {
     }
 
     @Override
-    public boolean verify(SinboloTaula st, List<String> erroreak) {
+    public boolean verify(SinboloTaula st, List<Errorea> erroreak) {
         return (adierazpena.verify(st, erroreak));
     }
 
     @Override
-    public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
+    public boolean verifyAlf(SinboloTaula st, List<Errorea> erroreak) {
         boolean zuzena = true;
         if (!st.getAlfabetoa().contains(letra)) {
-            erroreak.add("Alfabeto barneko karaktereak erabili (" + letra + ")");
+            Errorea e = new Errorea(p, "Alfabeto barneko karaktereak erabili (" + letra + ")");
+            erroreak.add(e);
             zuzena = false;
         }
            if(! adierazpena.verifyAlf(st, erroreak)){

@@ -30,7 +30,7 @@ public class Funtzioa implements IFuntzioa {
         return statements;
     }
 
-    public boolean verifyAlf(SinboloTaula st, List<String> erroreak) {
+    public boolean verifyAlf(SinboloTaula st, List<Errorea> erroreak) {
         boolean zuzena = true;
         for (Statement s : statements) {
             if (!s.verifyAlf(st, erroreak)) zuzena = false;
@@ -38,7 +38,7 @@ public class Funtzioa implements IFuntzioa {
         return zuzena;
     }
 
-    public boolean verify(SinboloTaula st, List<String> erroreak) {
+    public boolean verify(SinboloTaula st, List<Errorea> erroreak) {
         boolean zuzena = true;
         for (Statement s : statements) {
             if (!s.verify(st, erroreak)) zuzena = false;
