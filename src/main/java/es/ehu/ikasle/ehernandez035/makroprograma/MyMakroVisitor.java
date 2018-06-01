@@ -100,8 +100,8 @@ public class MyMakroVisitor extends MakroprogramaBaseVisitor<Object> {
 
     @Override
     public Object visitAlderaketak(MakroprogramaParser.AlderaketakContext ctx) {
-        Adierazpena ad1 = (Adierazpena) this.visit(ctx.ad);
-        Adierazpena ad2 = (Adierazpena) this.visit(ctx.ad);
+        Adierazpena ad1 = (Adierazpena) this.visit(ctx.ad1);
+        Adierazpena ad2 = (Adierazpena) this.visit(ctx.ad2);
         String eragText = ctx.erag.getText();
         AlderaketakExpr.Alderaketa erag = null;
         switch (eragText) {
@@ -128,6 +128,15 @@ public class MyMakroVisitor extends MakroprogramaBaseVisitor<Object> {
                 break;
             case "or":
                 erag = AlderaketakExpr.Alderaketa.OR;
+                break;
+            case "+":
+                erag = AlderaketakExpr.Alderaketa.Batuketa;
+                break;
+            case "-":
+                erag = AlderaketakExpr.Alderaketa.Kenketa;
+                break;
+            case "*":
+                erag = AlderaketakExpr.Alderaketa.Biderketa;
                 break;
         }
         return new AlderaketakExpr(lortuContext(ctx), ad1, ad2, erag);

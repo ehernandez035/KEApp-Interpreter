@@ -52,6 +52,7 @@ public class Utils {
     }
 
     public static BigInteger kod(List<BigInteger> elementuak) {
+        if (elementuak.isEmpty()) return BigInteger.ZERO;
         BigInteger azkenekoa = elementuak.get(elementuak.size() - 1);
         for (int i = elementuak.size() - 2; i >= 0; i--) {
             azkenekoa = kod_2(elementuak.get(i), azkenekoa);
@@ -60,6 +61,7 @@ public class Utils {
     }
 
     public static String kod(List<Character> alfabetoa, List<String> elementuak) {
+        if (elementuak.isEmpty()) return "";
         String azkenekoa = elementuak.get(elementuak.size() - 1);
         for (int i = elementuak.size() - 2; i >= 0; i--) {
             azkenekoa = kod_2(alfabetoa, elementuak.get(i), azkenekoa);
@@ -81,8 +83,6 @@ public class Utils {
 
 
     public static BigInteger[] dekod_2(BigInteger hitza){
-
-
         BigInteger w = sqrt(new BigDecimal(hitza.multiply(BigInteger.valueOf(8)).add(BigInteger.ONE)), 50).subtract(BigDecimal.ONE).toBigInteger().divide(BIGINT_TWO);
         BigInteger t = w.multiply(w).add(w).divide(BIGINT_TWO);
         BigInteger y = hitza.subtract(t);
@@ -107,6 +107,7 @@ public class Utils {
         return emaitza;
     }
     public static String[] dekod(List<Character> alfabetoa, String hitza, int n) {
+        if (n == 0) return new String[0];
         String[] emaitza = new String[n];
         for (int i = 0; i < n - 1; i++) {
             String[] unekoa = dekod_2(alfabetoa, hitza);

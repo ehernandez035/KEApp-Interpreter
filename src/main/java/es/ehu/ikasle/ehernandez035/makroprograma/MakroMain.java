@@ -23,8 +23,17 @@ public class MakroMain {
         TokenStream tokens = new CommonTokenStream(lexer);
         MakroprogramaParser parser = new MakroprogramaParser(tokens);
         MakroprogramaParser.ProgContext prog = parser.prog();
+
+        if (parser.getNumberOfSyntaxErrors() > 0) {
+            return;
+        }
+
         MyMakroVisitor visitor = new MyMakroVisitor();
         Programa programa = (Programa) visitor.visitProg(prog);
+
+        if (parser.getNumberOfSyntaxErrors() > 0) {
+            return;
+        }
 
         List<Character> alfabetoa = new ArrayList<>();
         List<Errorea> erroreak = new ArrayList<>();
@@ -37,7 +46,7 @@ public class MakroMain {
 //        alfabetoa.add('c');
 //        alfabetoa.add('d');
 
-
+        st.gordeAldagaia("X1", "ba");
         programa.verifyAlf(st, erroreak);
 
         if (!erroreak.isEmpty()) {
@@ -47,6 +56,7 @@ public class MakroMain {
         } else {
             String result = programa.execute(st);
             System.out.println(result);
+            System.out.println(Utils.hitzakZenbakira(alfabetoa, result));
         }
 
     }

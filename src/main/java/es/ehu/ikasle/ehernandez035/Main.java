@@ -23,9 +23,15 @@ public class Main {
         WhileLexer lexer = new WhileLexer(input);
         TokenStream tokens = new CommonTokenStream(lexer);
         WhileParser parser = new WhileParser(tokens);
+
+        if (parser.getNumberOfSyntaxErrors() > 0) return;
+
         WhileParser.ProgContext prog = parser.prog();
         MyWhileVisitor visitor = new MyWhileVisitor();
         Programa programa = (Programa) visitor.visit(prog);
+
+        if (parser.getNumberOfSyntaxErrors() > 0) return;
+
         List<String> params = new ArrayList<>();
 
         params.add("bab");

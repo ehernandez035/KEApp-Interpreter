@@ -8,7 +8,7 @@ statement: 'if' bald=adierazpena 'then' stmts+=statement* elif+=elsif* ('else' f
          | 'while' bald=adierazpena 'loop' stmts+=statement* 'end loop' ';'                                       # while
          | 'for' ind=ALDAGAIA 'in' has=adierazpena  '..' buk=adierazpena 'loop' stmts+=statement* 'end loop' ';'  # for
          | 'for' ind=ALDAGAIA 'in' has=ZENB '..' buk=ZENB 'loop' stmts+=statement* 'end loop' ';'                 # forZenbaki
-         | 'case' ad=adierazpena 'is' w+=when+ ('when' 'others' '=>' otherStmts+=statement+)? 'end case' ';'      #caseMakroa
+         | 'case' ad=adierazpena 'is' w+=when+ ('when' 'others' '=>' otherStmts+=statement+)? 'end case' ';'      # caseMakroa
          | ald=ALDAGAIA ':=' ad=adierazpena ';'                                                                   # esleipen
          ;
 elsif: 'elsif' bald=adierazpena 'then' stmts+=statement*;
@@ -21,7 +21,7 @@ adierazpena: ('hutsa' | 'phutsa')                                               
            | hitz=HITZA                                                             # hitza
            | ald=ALDAGAIA                                                           # aldagaia
            | ald=ALDAGAIA '?'? '(' (arg+=adierazpena (',' arg+=adierazpena)* )? ')' # funtzioDeia
-           | ad=adierazpena erag=ERAG ad=adierazpena                                # alderaketak
+           | ad1=adierazpena erag=ERAG ad2=adierazpena                              # alderaketak
            | 'not' ad=adierazpena                                                   # notAdierazpena
            ;
 
