@@ -11,6 +11,7 @@ public class Programa {
 
     public String execute(List<String> aldagaiak) {
         for(Statement s: statements){
+            if (Thread.currentThread().isInterrupted()) return aldagaiak.get(0);
             s.execute(aldagaiak);
         }
         return aldagaiak.get(0);

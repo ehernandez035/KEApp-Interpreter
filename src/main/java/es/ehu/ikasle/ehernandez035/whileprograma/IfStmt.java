@@ -17,6 +17,7 @@ public class IfStmt extends Statement {
     public void execute(List<String> aldagaiak) {
         if (aldagaiak.get(aldagaia).charAt(0)==kar){
             for(Statement s: stmts){
+                if (Thread.currentThread().isInterrupted()) return;
                 s.execute(aldagaiak);
             }
         }

@@ -14,6 +14,11 @@ public class EsleipenStmt extends Statement {
     @Override
     public void execute(List<String> aldagaiak) {
         String balio = this.ad.getValue(aldagaiak);
+        if (aldagaiak.size() <= aldagaia) {
+            for (int i = aldagaiak.size()-1; i<aldagaia; i++) {
+                aldagaiak.add("");
+            }
+        }
         aldagaiak.set(aldagaia, balio);
     }
 }

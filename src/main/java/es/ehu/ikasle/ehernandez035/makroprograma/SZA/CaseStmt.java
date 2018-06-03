@@ -21,6 +21,7 @@ public class CaseStmt extends Statement {
             if (bald.getValue(st).equals(when.getBalioa().getValue(st))) {
                 exekutatuDa = true;
                 for (Statement s : when.getStatements()) {
+                    if (Thread.currentThread().isInterrupted()) return;
                     s.execute(st);
                 }
             }

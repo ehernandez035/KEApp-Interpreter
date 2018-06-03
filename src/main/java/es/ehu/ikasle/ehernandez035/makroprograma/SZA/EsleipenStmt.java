@@ -14,6 +14,7 @@ public class EsleipenStmt extends Statement {
 
     @Override
     public void execute(SinboloTaula st) {
+        if (Thread.currentThread().isInterrupted()) return;
         st.gordeAldagaia(izena, adierazpena.getValue(st));
     }
 

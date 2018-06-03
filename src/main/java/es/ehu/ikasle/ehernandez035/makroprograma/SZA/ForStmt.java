@@ -29,6 +29,7 @@ public class ForStmt extends Statement {
         for (BigInteger x = has_value; x.subtract(buk_value).signum() < 0; x = x.add(BigInteger.ONE)) {
             st.gordeAldagaia(aldagaia, Utils.zenbakiaHitzera(st.getAlfabetoa(), x));
             for (Statement s : statements) {
+                if (Thread.currentThread().isInterrupted()) return;
                 s.execute(st);
             }
         }

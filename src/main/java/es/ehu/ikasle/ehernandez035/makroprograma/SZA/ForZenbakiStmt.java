@@ -25,6 +25,7 @@ public class ForZenbakiStmt extends Statement {
         for (int x = has; x < buk; x++) {
             st.gordeAldagaia(aldagaia, Utils.zenbakiaHitzera(st.getAlfabetoa(), BigInteger.valueOf(x)));
             for (Statement s : statements) {
+                if (Thread.currentThread().isInterrupted()) return;
                 s.execute(st);
             }
         }

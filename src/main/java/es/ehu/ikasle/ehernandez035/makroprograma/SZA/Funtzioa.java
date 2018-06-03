@@ -16,6 +16,7 @@ public class Funtzioa implements IFuntzioa {
     @Override
     public String execute(SinboloTaula st) {
         for (Statement s : statements) {
+            if (Thread.currentThread().isInterrupted()) return "";
             s.execute(st);
         }
         return st.lortuBalioa("X0");

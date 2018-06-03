@@ -16,6 +16,7 @@ public class WhileStmt extends Statement {
     public void execute(SinboloTaula st) {
         while (!baldintza.getValue(st).isEmpty()) {
             for (Statement s : this.statements) {
+                if (Thread.currentThread().isInterrupted()) return;
                 s.execute(st);
             }
         }

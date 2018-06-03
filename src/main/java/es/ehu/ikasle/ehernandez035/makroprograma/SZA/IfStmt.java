@@ -19,18 +19,21 @@ public class IfStmt extends Statement {
     public void execute(SinboloTaula st) {
         if (!baldintza.getValue(st).isEmpty()) {
             for (Statement s : this.trueStmts) {
+                if (Thread.currentThread().isInterrupted()) return;
                 s.execute(st);
             }
         } else {
             for (When when : this.elsifStmts) {
                 if (!when.getBalioa().getValue(st).isEmpty()) {
                     for (Statement s : when.getStatements()) {
+                        if (Thread.currentThread().isInterrupted()) return;
                         s.execute(st);
                     }
                     return;
                 }
             }
             for (Statement s : this.falseStmts) {
+                if (Thread.currentThread().isInterrupted()) return;
                 s.execute(st);
             }
         }

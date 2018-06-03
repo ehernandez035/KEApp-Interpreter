@@ -11,6 +11,9 @@ public class CdrExpr extends Adierazpena {
 
     @Override
     public String getValue(List<String> aldagaiak) {
-        return aldagaiak.get(aldagaia).substring(1);
+        if (aldagaiak.size() <= aldagaia) return "";
+        String balio = aldagaiak.get(aldagaia);
+        if (balio.length() == 0) return "";
+        return balio.substring(1);
     }
 }

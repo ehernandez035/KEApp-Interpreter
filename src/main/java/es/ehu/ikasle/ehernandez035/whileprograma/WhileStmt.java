@@ -15,6 +15,7 @@ public class WhileStmt extends Statement {
     public void execute(List<String> aldagaiak) {
         while (aldagaiak.get(aldagaia).length()!=0){
             for(Statement s: stmts){
+                if (Thread.currentThread().isInterrupted()) return;
                 s.execute(aldagaiak);
             }
         }
