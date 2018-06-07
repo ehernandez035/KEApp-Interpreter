@@ -33,5 +33,4 @@ DESKOD: 'deskod_' [0-9]+ '_' [0-9]+ ;
 ALDAGAIA: [a-zA-Z][a-zA-Z0-9_]* ;
 ZENB: [0-9]+ ;
 COMMENT: '--'~[\n\r]* -> skip;
-
 WS : [ \t\r\n]+ -> skip;

@@ -118,7 +118,11 @@ public class Liburutegia {
         int indize = Utils.hitzakZenbakira(st.getAlfabetoa(), st.lortuBalioa("X2")).intValue();
         // TODO Errorea tratatu
         if (indize >= luzera) return "";
-        return Utils.dekod(st.getAlfabetoa(), w[1], luzera)[indize];
+        try {
+            return Utils.dekod(st.getAlfabetoa(), w[1], luzera)[indize];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return "";
+        }
     }
 
     public static String aldatu(SinboloTaula st) {
@@ -132,11 +136,9 @@ public class Liburutegia {
             bektore[indize] = balioBerria;
             return Utils.bektoretikHitzera(st.getAlfabetoa(), Arrays.asList(bektore));
         } else {
-            int luzeraberria = indize > luzera ? indize : luzera;
-
-            List<String> berria = new ArrayList<>(luzeraberria);
+            List<String> berria = new ArrayList<>(indize);
             berria.addAll(Arrays.asList(bektore));
-            for (int i = bektore.length; i < luzeraberria; i++) berria.add("");
+            for (int i = bektore.length; i < indize; i++) berria.add("");
             berria.add(indize, balioBerria);
             return Utils.bektoretikHitzera(st.getAlfabetoa(), berria);
         }

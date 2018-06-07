@@ -1,8 +1,21 @@
---1 etik 9rako zenbakiak ordenean batu
 
+--Batuketa (1+2+...+8)
+--def main begin
+--    X0:=hutsa;
+--	for i in 1..9 loop
+--		X0:=X0+i;
+--	end loop;
+--end def;
+
+--Kenketa
+--def main begin
+--    X0:="b"-"b";
+--end def;
+
+--Biderketa (1*2*...*8)
 def main begin
     X0:="a";
-	for i in 1..10 loop
-		X0:=X0+i;
+	for i in 1..9 loop
+		X0:=X0*i;
 	end loop;
 end def;

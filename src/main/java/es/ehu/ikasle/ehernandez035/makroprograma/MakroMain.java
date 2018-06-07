@@ -55,9 +55,33 @@ public class MakroMain {
             }
         } else {
             String result = programa.execute(st);
-            System.out.println(result);
-            System.out.println(Utils.hitzakZenbakira(alfabetoa, result));
+
+            ArrayList<String> bektoreElem = Utils.hitzetikBektorera(alfabetoa, result);
+            String bektore = join(bektoreElem, ", ", "hutsa");
+
+            ArrayList<String> pilaElem = Utils.hitzetikPilera(alfabetoa, result);
+            String pila = join(pilaElem, ", ", "hutsa");
+
+            System.out.println("Hitza:   " + result);
+            System.out.println("Zenbaki: " + Utils.hitzakZenbakira(alfabetoa, result).toString());
+            System.out.println("Bektore: (" + bektore + ")");
+            System.out.println("Pila:    <" + pila + "]");
         }
 
+    }
+
+    private static String join(List<String> list, String separator, String toReplaceIfEmpty) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < list.size() - 1; i++) {
+            String elem = list.get(i);
+            if (toReplaceIfEmpty != null && "".equals(elem)) elem = toReplaceIfEmpty;
+            sb.append(elem).append(separator);
+        }
+        if (!list.isEmpty()) {
+            String elem = list.get(list.size() - 1);
+            if (toReplaceIfEmpty != null && "".equals(elem)) elem = toReplaceIfEmpty;
+            sb.append(elem);
+        }
+        return sb.toString();
     }
 }

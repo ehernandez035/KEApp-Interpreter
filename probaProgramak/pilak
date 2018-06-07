@@ -9,9 +9,4 @@ def main begin
 	else
 		X0:="";
 	end if;
-	if not p_hutsa_da?(X0) then
-    		X0:="b";
-    	else
-    		X0:="bbb";
-    end if;
 end def;

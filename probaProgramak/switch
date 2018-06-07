@@ -1,7 +1,8 @@
 def main begin
+    X1:="bb";
 	case X1 is
         when "a"=> X0:=cons_a(X0);
         when "b"=> X0:=cons_b(X0);
-        when others => X0:="abb";
+        when others => X0:="ab";
 	end case;
 end def;

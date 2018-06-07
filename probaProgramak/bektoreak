@@ -1,0 +1,5 @@
+def main begin
+    X0:=lehen_bektore();        --bektore hutsa sortzeko
+    X0:=aldatu(X0, hutsa, "ab");--"ab" elementua lehen posizioan gehitzeko
+    X0:=atzitu(X0, "");         --lehen posizioaren elementua lortzeko
+end def;
