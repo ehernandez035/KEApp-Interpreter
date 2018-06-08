@@ -1,17 +1,5 @@
-def nireTontorra begin
-	X0:=deskod_2_1(X1);
-end def;
-
 def main begin
-	pila:=pilaratu("ab", pilaratu("b", pilaratu("a", phutsa)));
-	if nireTontorra(pila)=tontorra(pila) then
-    		X0:="a";
-    	else
-    		X0:="";
-    	end if;
-	if not p_hutsa_da?(X0) then
-        		X0:="b";
-        	else
-        		X0:="bbb";
-        end if;
+    X1:="b";
+    X2:="b";
+    X0:=not X1;
 end def;

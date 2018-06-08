@@ -1,0 +1,9 @@
+def main begin
+    X1:="b";
+    X2:="b";
+    if X1<=X2 then
+        X0:="aaa";
+    else
+        X0:="bbb";
+    end if;
+end def;

@@ -21,11 +21,12 @@ adierazpena: ('hutsa' | 'phutsa')                                               
            | hitz=HITZA                                                             # hitza
            | ald=ALDAGAIA                                                           # aldagaia
            | ald=ALDAGAIA '?'? '(' (arg+=adierazpena (',' arg+=adierazpena)* )? ')' # funtzioDeia
+           | ad1=adierazpena erag=ERAGPRIORITATE ad2=adierazpena                    # eragiketakPrioritate
            | ad1=adierazpena erag=ERAG ad2=adierazpena                              # alderaketak
            | 'not' ad=adierazpena                                                   # notAdierazpena
            ;
-
-ERAG: ('=' | '>=' | '<=' | '>' | '<' | '/=' | 'and' | 'or' | '+' | '-' | '*');
+ERAGPRIORITATE: ('*' | 'and');
+ERAG: ('=' | '>=' | '<=' | '>' | '<' | '/=' | 'or' | '+' | '-' );
 HITZA: '"' [a-zA-Z]* '"';
 CONSX: 'cons_' [a-z] ;
 CARX: 'car_' [a-zA-Z] ;
