@@ -6,6 +6,7 @@ import es.ehu.ikasle.ehernandez035.makroprograma.SZA.*;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 
+import java.nio.charset.MalformedInputException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,7 +109,7 @@ public class MyMakroVisitor extends MakroprogramaBaseVisitor<Object> {
             case "=":
                 erag = AlderaketakExpr.Alderaketa.EQ;
                 break;
-            case "!=":
+            case "/=":
                 erag = AlderaketakExpr.Alderaketa.NE;
                 break;
             case "<=":
@@ -138,6 +139,8 @@ public class MyMakroVisitor extends MakroprogramaBaseVisitor<Object> {
             case "*":
                 erag = AlderaketakExpr.Alderaketa.Biderketa;
                 break;
+                default:
+                    throw new RuntimeException("Unknown operator '" + eragText + "'");
         }
         return new AlderaketakExpr(lortuContext(ctx), ad1, ad2, erag);
     }

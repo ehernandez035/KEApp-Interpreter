@@ -1,0 +1,5 @@
+def main begin
+    X1:="aa";
+    X2:="bb";
+    X0:= kateatu(X1, X2);
+end def;

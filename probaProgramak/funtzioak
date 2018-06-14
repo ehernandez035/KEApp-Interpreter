@@ -1,0 +1,3 @@
+def main begin
+    X0:=kateatu(kateatu("aa","bb"), "aa");
+end def;

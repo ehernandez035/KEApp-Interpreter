@@ -4,13 +4,14 @@ prog: funtz+=func+ EOF;
 
 func: 'def' ald=ALDAGAIA '?'? 'begin' stmts+=statement* 'end def' ';';
 
-statement: 'if' bald=adierazpena 'then' stmts+=statement* elif+=elsif* ('else' falseStmts+=statement*)? 'end if' ';'           # if
-         | 'while' bald=adierazpena 'loop' stmts+=statement* 'end loop' ';'                                       # while
-         | 'for' ind=ALDAGAIA 'in' has=adierazpena  '..' buk=adierazpena 'loop' stmts+=statement* 'end loop' ';'  # for
-         | 'for' ind=ALDAGAIA 'in' has=ZENB '..' buk=ZENB 'loop' stmts+=statement* 'end loop' ';'                 # forZenbaki
-         | 'case' ad=adierazpena 'is' w+=when+ ('when' 'others' '=>' otherStmts+=statement+)? 'end case' ';'      # caseMakroa
-         | ald=ALDAGAIA ':=' ad=adierazpena ';'                                                                   # esleipen
+statement: 'if' bald=adierazpena 'then' stmts+=statement* elif+=elsif* ('else' falseStmts+=statement*)? 'end if' ';'  # if
+         | 'while' bald=adierazpena 'loop' stmts+=statement* 'end loop' ';'                                           # while
+         | 'for' ind=ALDAGAIA 'in' has=adierazpena  '..' buk=adierazpena 'loop' stmts+=statement* 'end loop' ';'      # for
+         | 'for' ind=ALDAGAIA 'in' has=ZENB '..' buk=ZENB 'loop' stmts+=statement* 'end loop' ';'                     # forZenbaki
+         | 'case' ad=adierazpena 'is' w+=when+ ('when' 'others' '=>' otherStmts+=statement+)? 'end case' ';'          # caseMakroa
+         | ald=ALDAGAIA ':=' ad=adierazpena ';'                                                                       # esleipen
          ;
+
 elsif: 'elsif' bald=adierazpena 'then' stmts+=statement*;
 when: 'when' ad=adierazpena '=>' stmts+=statement+;
 
@@ -21,12 +22,14 @@ adierazpena: ('hutsa' | 'phutsa')                                               
            | hitz=HITZA                                                             # hitza
            | ald=ALDAGAIA                                                           # aldagaia
            | ald=ALDAGAIA '?'? '(' (arg+=adierazpena (',' arg+=adierazpena)* )? ')' # funtzioDeia
-           | ad1=adierazpena erag=ERAGPRIORITATE ad2=adierazpena                    # eragiketakPrioritate
-           | ad1=adierazpena erag=ERAG ad2=adierazpena                              # alderaketak
+           | ad1=adierazpena erag='*' ad2=adierazpena                               # alderaketak
+           | ad1=adierazpena erag=('+'|'-') ad2=adierazpena                         # alderaketak
+           | ad1=adierazpena erag=('='|'>='|'<='|'>'|'<'|'/=') ad2=adierazpena      # alderaketak
+           | ad1=adierazpena erag='and' ad2=adierazpena                             # alderaketak
+           | ad1=adierazpena erag='or' ad2=adierazpena                              # alderaketak
            | 'not' ad=adierazpena                                                   # notAdierazpena
            ;
-ERAGPRIORITATE: ('*' | 'and');
-ERAG: ('=' | '>=' | '<=' | '>' | '<' | '/=' | 'or' | '+' | '-' );
+
 HITZA: '"' [a-zA-Z]* '"';
 CONSX: 'cons_' [a-z] ;
 CARX: 'car_' [a-zA-Z] ;

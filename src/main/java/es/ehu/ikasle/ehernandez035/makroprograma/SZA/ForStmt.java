@@ -40,6 +40,8 @@ public class ForStmt extends Statement {
     @Override
     public boolean verify(SinboloTaula st, List<Errorea> erroreak) {
         boolean zuzena = true;
+
+
         if (!has.verify(st, erroreak)) {
             zuzena = false;
         }

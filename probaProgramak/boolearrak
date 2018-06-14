@@ -1,0 +1,7 @@
+--X1 hutsa ez bada, true bezala tratatuko da
+def main begin
+    X1:="a";
+    if X1 then
+        X0:="aaa";
+    end if;
+end def;

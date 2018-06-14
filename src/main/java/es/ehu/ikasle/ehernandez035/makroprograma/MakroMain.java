@@ -49,6 +49,7 @@ public class MakroMain {
         st.gordeAldagaia("X1", "ba");
         programa.verifyAlf(st, erroreak);
 
+
         if (!erroreak.isEmpty()) {
             for (Errorea e : erroreak) {
                 System.out.println("Error: " + e.mezua);

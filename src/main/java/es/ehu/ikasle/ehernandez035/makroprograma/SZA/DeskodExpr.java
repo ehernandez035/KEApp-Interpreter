@@ -25,7 +25,7 @@ public class DeskodExpr extends Adierazpena {
     public boolean verify(SinboloTaula st, List<Errorea> erroreak) {
         boolean zuzena = true;
         if(indize > tamaina){
-            Errorea e = new Errorea(p, "Deskod_" + tamaina + "_" + indize + ": " + indize + " <= " + tamaina + " izan behar du");
+            Errorea e = new Errorea(p, "Deskod funtzioa gaizki idatzi da:" + indize + " <= " + tamaina + " izan behar du");
             erroreak.add(e);
             zuzena=false;
         }

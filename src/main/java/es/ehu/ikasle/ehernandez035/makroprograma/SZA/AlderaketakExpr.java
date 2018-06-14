@@ -19,6 +19,7 @@ public class AlderaketakExpr extends Adierazpena {
         this.ad1 = ad1;
         this.ad2 = ad2;
         this.eragiketa = eragiketa;
+        if (eragiketa == null) throw new IllegalArgumentException("Eragiketa cannot be null");
     }
 
 
