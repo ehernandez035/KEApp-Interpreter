@@ -2,18 +2,18 @@ grammar Makroprograma;
 
 prog: funtz+=func+ EOF;
 
-func: 'def' ald=ALDAGAIA '?'? 'begin' stmts+=statement* 'end def' ';';
+func: 'def' ald=ALDAGAIA '?'? 'begin' stmts+=statement* 'end' 'def' ';';
 
-statement: 'if' bald=adierazpena 'then' stmts+=statement* elif+=elsif* ('else' falseStmts+=statement*)? 'end if' ';'  # if
+statement: 'if' bald=adierazpena 'then' stmts+=statement* elif+=elsif* ('else' falseStmts+=statement*)? 'end' 'if' ';' # if
          | 'while' bald=adierazpena 'loop' stmts+=statement* 'end loop' ';'                                           # while
-         | 'for' ind=ALDAGAIA 'in' has=adierazpena  '..' buk=adierazpena 'loop' stmts+=statement* 'end loop' ';'      # for
-         | 'for' ind=ALDAGAIA 'in' has=ZENB '..' buk=ZENB 'loop' stmts+=statement* 'end loop' ';'                     # forZenbaki
-         | 'case' ad=adierazpena 'is' w+=when+ ('when' 'others' '=>' otherStmts+=statement+)? 'end case' ';'          # caseMakroa
+         | 'for' ind=ALDAGAIA 'in' has=adierazpena  '..' buk=adierazpena 'loop' stmts+=statement* 'end' 'loop' ';'    # for
+         | 'for' ind=ALDAGAIA 'in' has=ZENB '..' buk=ZENB 'loop' stmts+=statement* 'end' 'loop' ';'                   # forZenbaki
+         | 'case' ad=adierazpena 'is' w+=when+ ('when' 'others' '=>' otherStmts+=statement*)? 'end' 'case' ';'        # caseMakroa
          | ald=ALDAGAIA ':=' ad=adierazpena ';'                                                                       # esleipen
          ;
 
 elsif: 'elsif' bald=adierazpena 'then' stmts+=statement*;
-when: 'when' ad=adierazpena '=>' stmts+=statement+;
+when: 'when' ad=adierazpena '=>' stmts+=statement*;
 
 adierazpena: ('hutsa' | 'phutsa')                                                   # hutsa
            | cons=CONSX '(' ad=adierazpena ')'                                      # cons
@@ -25,9 +25,9 @@ adierazpena: ('hutsa' | 'phutsa')                                               
            | ad1=adierazpena erag='*' ad2=adierazpena                               # alderaketak
            | ad1=adierazpena erag=('+'|'-') ad2=adierazpena                         # alderaketak
            | ad1=adierazpena erag=('='|'>='|'<='|'>'|'<'|'/=') ad2=adierazpena      # alderaketak
+           | 'not' ad=adierazpena                                                   # notAdierazpena
            | ad1=adierazpena erag='and' ad2=adierazpena                             # alderaketak
            | ad1=adierazpena erag='or' ad2=adierazpena                              # alderaketak
-           | 'not' ad=adierazpena                                                   # notAdierazpena
            ;
 
 HITZA: '"' [a-zA-Z]* '"';
